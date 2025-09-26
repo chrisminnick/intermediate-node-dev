@@ -1,0 +1,22 @@
+[
+  {
+    "id": "sample-user-1",
+    "username": "testuser1",
+    "email": "testuser1@example.com",
+    "firstName": "Test",
+    "lastName": "User",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "lastLoginAt": "2024-01-15T00:00:00.000Z",
+    "isActive": true
+  },
+  {
+    "id": "sample-user-2",
+    "username": "testuser2",
+    "email": "testuser2@example.com",
+    "firstName": "Another",
+    "lastName": "User",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "lastLoginAt": "2024-01-14T00:00:00.000Z",
+    "isActive": true
+  }
+]

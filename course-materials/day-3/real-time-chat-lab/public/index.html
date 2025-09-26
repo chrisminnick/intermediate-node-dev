@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Chat Application</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-spinner"></div>
+      <p>Connecting to chat server...</p>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+      <div class="modal-content">
+        <div class="auth-header">
+          <h2>Welcome to Real-Time Chat</h2>
+          <p>Join the conversation with people around the world</p>
+        </div>
+
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-tab="login">Login</button>
+          <button class="auth-tab" data-tab="guest">Guest</button>
+        </div>
+
+        <div id="login-form" class="auth-form active">
+          <form id="login-form-element">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                required
+                placeholder="Enter your username"
+                minlength="3"
+                maxlength="30"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password (optional)</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password (leave blank for guest)"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+
+        <div id="guest-form" class="auth-form">
+          <div class="guest-info">
+            <p>🎭 Join as a guest with a randomly generated username</p>
+            <p>You can change your name later in settings</p>
+          </div>
+          <button id="guest-login-btn" class="btn btn-secondary">
+            Continue as Guest
+          </button>
+        </div>
+
+        <div class="auth-error" id="auth-error" style="display: none"></div>
+      </div>
+    </div>
+
+    <!-- Main Chat Application -->
+    <div id="chat-app" class="chat-app" style="display: none">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h1>💬 Chat</h1>
+          <div class="user-info">
+            <div class="user-avatar" id="user-avatar"></div>
+            <div class="user-details">
+              <span class="username" id="current-username">User</span>
+              <span class="user-status" id="user-status">Online</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room List -->
+        <div class="room-section">
+          <div class="section-header">
+            <h3>Rooms</h3>
+            <button id="create-room-btn" class="btn-icon" title="Create Room">
+              +
+            </button>
+          </div>
+          <div class="room-list" id="room-list">
+            <!-- Rooms will be populated here -->
+          </div>
+        </div>
+
+        <!-- Online Users -->
+        <div class="users-section">
+          <div class="section-header">
+            <h3>Online Users</h3>
+            <span class="user-count" id="online-count">0</span>
+          </div>
+          <div class="users-list" id="online-users">
+            <!-- Online users will be populated here -->
+          </div>
+        </div>
+
+        <!-- Settings Button -->
+        <div class="sidebar-footer">
+          <button id="settings-btn" class="btn btn-outline">⚙️ Settings</button>
+          <button id="logout-btn" class="btn btn-outline">🚪 Logout</button>
+        </div>
+      </div>
+
+      <!-- Main Chat Area -->
+      <div class="main-content">
+        <!-- Chat Header -->
+        <div class="chat-header">
+          <div class="room-info">
+            <h2 id="current-room-name">Select a room</h2>
+            <span class="room-users-count" id="room-users-count">0 users</span>
+          </div>
+
+          <div class="chat-actions">
+            <button id="room-info-btn" class="btn-icon" title="Room Info">
+              ℹ️
+            </button>
+            <button
+              id="toggle-sidebar-btn"
+              class="btn-icon mobile-only"
+              title="Toggle Sidebar"
+            >
+              ☰
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div class="messages-container" id="messages-container">
+          <div class="messages-list" id="messages-list">
+            <div class="welcome-message">
+              <h3>Welcome to Real-Time Chat! 🎉</h3>
+              <p>
+                Select a room from the sidebar to start chatting, or create your
+                own room.
+              </p>
+              <ul>
+                <li>💬 Send messages and see them appear instantly</li>
+                <li>📁 Share files by dragging them into the chat</li>
+                <li>👥 Send private messages by clicking on usernames</li>
+                <li>⌨️ See when others are typing</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Typing Indicators -->
+          <div class="typing-indicators" id="typing-indicators"></div>
+        </div>
+
+        <!-- Message Input Area -->
+        <div class="message-input-area">
+          <div class="input-container">
+            <input
+              type="file"
+              id="file-input"
+              style="display: none"
+              accept="image/*,text/plain"
+            />
+            <button id="file-upload-btn" class="btn-icon" title="Upload File">
+              📎
+            </button>
+
+            <div class="text-input-container">
+              <textarea
+                id="message-input"
+                placeholder="Type your message..."
+                rows="1"
+                maxlength="500"
+              ></textarea>
+              <div class="input-actions">
+                <button id="emoji-btn" class="btn-icon" title="Emoji">
+                  😀
+                </button>
+                <span class="char-count" id="char-count">0/500</span>
+              </div>
+            </div>
+
+            <button id="send-btn" class="btn btn-primary" disabled>Send</button>
+          </div>
+
+          <!-- File Upload Progress -->
+          <div
+            class="upload-progress"
+            id="upload-progress"
+            style="display: none"
+          >
+            <div class="progress-bar">
+              <div class="progress-fill" id="upload-progress-fill"></div>
+            </div>
+            <span class="progress-text" id="upload-progress-text"
+              >Uploading...</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Room Modal -->
+    <div id="create-room-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Create New Room</h3>
+          <button class="modal-close" data-modal="create-room-modal">
+            &times;
+          </button>
+        </div>
+        <form id="create-room-form">
+          <div class="form-group">
+            <label for="room-name">Room Name</label>
+            <input
+              type="text"
+              id="room-name"
+              name="name"
+              required
+              placeholder="Enter room name"
+              maxlength="50"
+            />
+          </div>
+          <div class="form-group">
+            <label for="room-description">Description (optional)</label>
+            <textarea
+              id="room-description"
+              name="description"
+              placeholder="Room description"
+              maxlength="200"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="room-private" name="isPrivate" />
+              <span class="checkmark"></span>
+              Private Room
+            </label>
+          </div>
+          <div class="form-group" id="password-group" style="display: none">
+            <label for="room-password">Password</label>
+            <input
+              type="password"
+              id="room-password"
+              name="password"
+              placeholder="Enter room password"
+            />
+          </div>
+          <div class="modal-actions">
+            <button
+              type="button"
+              class="btn btn-outline"
+              data-modal="create-room-modal"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">Create Room</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Settings</h3>
+          <button class="modal-close" data-modal="settings-modal">
+            &times;
+          </button>
+        </div>
+        <div class="settings-content">
+          <div class="setting-group">
+            <h4>Profile</h4>
+            <div class="form-group">
+              <label for="settings-username">Username</label>
+              <input
+                type="text"
+                id="settings-username"
+                placeholder="Your username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="settings-email">Email (optional)</label>
+              <input
+                type="email"
+                id="settings-email"
+                placeholder="your.email@example.com"
+              />
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <h4>Preferences</h4>
+            <label class="checkbox-label">
+              <input type="checkbox" id="notifications-enabled" checked />
+              <span class="checkmark"></span>
+              Enable Notifications
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="sound-enabled" checked />
+              <span class="checkmark"></span>
+              Sound Effects
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="dark-theme" />
+              <span class="checkmark"></span>
+              Dark Theme
+            </label>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button
+            type="button"
+            class="btn btn-outline"
+            data-modal="settings-modal"
+          >
+            Cancel
+          </button>
+          <button type="button" id="save-settings-btn" class="btn btn-primary">
+            Save Settings
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Room Info Modal -->
+    <div id="room-info-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Room Information</h3>
+          <button class="modal-close" data-modal="room-info-modal">
+            &times;
+          </button>
+        </div>
+        <div class="room-info-content" id="room-info-content">
+          <!-- Room info will be populated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notifications" class="notifications-container"></div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="context-menu" style="display: none">
+      <ul>
+        <li id="context-reply">Reply</li>
+        <li id="context-private-message">Private Message</li>
+        <li id="context-copy">Copy Message</li>
+        <li id="context-delete" class="admin-only">Delete Message</li>
+      </ul>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/socket-client.js"></script>
+  </body>
+</html>

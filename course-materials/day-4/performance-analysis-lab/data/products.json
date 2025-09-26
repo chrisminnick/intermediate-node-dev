@@ -1,0 +1,41 @@
+[
+  {
+    "id": "sample-product-1",
+    "name": "Sample Laptop",
+    "description": "High-performance laptop for development and gaming",
+    "price": 1299,
+    "category": "Electronics",
+    "brand": "TechBrand",
+    "inStock": true,
+    "quantity": 50,
+    "tags": ["popular", "new", "gaming"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "sample-product-2",
+    "name": "Sample Phone",
+    "description": "Latest smartphone with advanced features",
+    "price": 899,
+    "category": "Electronics",
+    "brand": "PhoneCorp",
+    "inStock": true,
+    "quantity": 75,
+    "tags": ["bestseller", "premium"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "sample-product-3",
+    "name": "Sample Book",
+    "description": "Learn Node.js performance optimization",
+    "price": 39,
+    "category": "Books",
+    "brand": "TechBooks",
+    "inStock": true,
+    "quantity": 100,
+    "tags": ["educational", "programming"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+]

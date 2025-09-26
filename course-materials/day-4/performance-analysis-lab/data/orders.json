@@ -1,0 +1,46 @@
+[
+  {
+    "id": "sample-order-1",
+    "userId": "sample-user-1",
+    "items": [
+      {
+        "productId": "sample-product-1",
+        "quantity": 1,
+        "price": 1299,
+        "total": 1299,
+        "rating": 5,
+        "review": "Excellent laptop for development work!"
+      }
+    ],
+    "total": 1299,
+    "status": "delivered",
+    "createdAt": "2024-01-10T00:00:00.000Z",
+    "updatedAt": "2024-01-15T00:00:00.000Z"
+  },
+  {
+    "id": "sample-order-2",
+    "userId": "sample-user-2",
+    "items": [
+      {
+        "productId": "sample-product-2",
+        "quantity": 1,
+        "price": 899,
+        "total": 899,
+        "rating": 4,
+        "review": "Great phone, very responsive"
+      },
+      {
+        "productId": "sample-product-3",
+        "quantity": 2,
+        "price": 39,
+        "total": 78,
+        "rating": 5,
+        "review": "Informative book on Node.js"
+      }
+    ],
+    "total": 977,
+    "status": "delivered",
+    "createdAt": "2024-01-12T00:00:00.000Z",
+    "updatedAt": "2024-01-16T00:00:00.000Z"
+  }
+]
