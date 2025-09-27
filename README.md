@@ -84,4 +84,4 @@ This course material, including but not limited to slides, documentation, code e
 
 **Unauthorized reproduction or distribution of this material is strictly prohibited and may result in severe civil and criminal penalties.**
 
-For licensing inquiries and permissions, contact: [info@watzthis.com](mailto:info@watzthis.com)
+For licensing inquiries and permissions or to request a sample, contact: [info@watzthis.com](mailto:info@watzthis.com)
