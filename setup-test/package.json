@@ -1,0 +1,21 @@
+{
+  "name": "intermediate-node-setup-test",
+  "version": "1.0.0",
+  "description": "Setup verification test for Intermediate Development with Node.js course",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "nodejs",
+    "setup",
+    "test",
+    "course"
+  ],
+  "author": "Chris Minnick",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
