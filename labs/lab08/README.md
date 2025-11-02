@@ -1,4 +1,4 @@
-# Lab 8: Real Time Chat Lab
+# Lab 8: Lab08 Performance Analysis
 
 See the course lab instructions PDF for detailed instructions.
 

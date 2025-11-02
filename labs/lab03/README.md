@@ -1,4 +1,4 @@
-# Lab 3: Docker Deployment Lab
+# Lab 3: Lab03 Jwt Auth Lab
 
 See the course lab instructions PDF for detailed instructions.
 

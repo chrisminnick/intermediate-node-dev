@@ -1,4 +1,4 @@
-# Lab 1: Lab01 Async Iterators Lab
+# Lab 11: Lab11 Logging Monitoring
 
 See the course lab instructions PDF for detailed instructions.
 

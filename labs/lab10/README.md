@@ -1,4 +1,4 @@
-# Lab 10: Worker Threads Lab
+# Lab 10: Lab10 Docker Deployment
 
 See the course lab instructions PDF for detailed instructions.
 

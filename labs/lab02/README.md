@@ -1,4 +1,4 @@
-# Lab 2: Comprehensive Testing Lab
+# Lab 2: Lab02 Worker Threads Lab
 
 See the course lab instructions PDF for detailed instructions.
 

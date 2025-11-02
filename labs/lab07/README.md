@@ -1,4 +1,4 @@
-# Lab 7: Performance Analysis Lab
+# Lab 7: Lab07 Real Time Chat
 
 See the course lab instructions PDF for detailed instructions.
 

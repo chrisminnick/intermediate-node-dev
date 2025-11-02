@@ -1,4 +1,4 @@
-# Lab 5: Logging Monitoring Lab
+# Lab 5: Lab05 Redis Caching Lab
 
 See the course lab instructions PDF for detailed instructions.
 

@@ -1,4 +1,4 @@
-# Lab 6: Mongodb Transactions Lab
+# Lab 6: Lab06 Advanced Redis Usage
 
 See the course lab instructions PDF for detailed instructions.
 

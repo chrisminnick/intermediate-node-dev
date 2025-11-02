@@ -1,4 +1,4 @@
-# Lab 9: Redis Caching Lab
+# Lab 9: Lab09 Testing
 
 See the course lab instructions PDF for detailed instructions.
 

@@ -1,4 +1,4 @@
-# Lab 4: Jwt Auth Lab
+# Lab 4: Lab04 Mongodb Transactions Lab
 
 See the course lab instructions PDF for detailed instructions.
 
